@@ -3,8 +3,11 @@ const results = document.getElementById("results");
 const apiBaseInput = document.getElementById("api-base");
 
 const storedApiBase = window.localStorage.getItem("ctiApiBase");
+const defaultApiBase = window.location.pathname.startsWith("/ui")
+  ? window.location.origin
+  : "http://localhost:8000";
 if (apiBaseInput) {
-  apiBaseInput.value = storedApiBase || window.location.origin;
+  apiBaseInput.value = storedApiBase || defaultApiBase;
 }
 
 function renderResults(payload) {

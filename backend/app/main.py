@@ -5,6 +5,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 
 from .pipeline import run_pipeline
 from .schemas import SearchRequest, SearchResponse
@@ -19,9 +20,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-frontend_dir = Path(__file__).resolve().parents[3] / "frontend"
+frontend_dir = Path(__file__).resolve().parents[2] / "frontend"
 if frontend_dir.exists():
     app.mount("/ui", StaticFiles(directory=frontend_dir, html=True), name="ui")
+
+
+@app.get("/ui")
+def ui_root() -> RedirectResponse:
+    return RedirectResponse(url="/ui/")
 
 
 @app.get("/")
