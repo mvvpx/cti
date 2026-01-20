@@ -23,11 +23,12 @@ cd backend
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 ```
 
-If port 8000 is already in use, run `uvicorn app.main:app --reload --port 8001` and update the
-frontend API base URL accordingly.
+If port 8000 is already in use, run `python -m uvicorn app.main:app --reload --port 8001` and
+update the frontend API base URL accordingly. Using `python -m uvicorn` ensures the virtual
+environment dependencies are used, which avoids importing system-installed FastAPI/Pydantic.
 
 ### Frontend
 ```bash
