@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CTI Platform</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>CTI Intelligence Workbench</h1>
+        <p>
+          Search across dark web, Telegram, and Discord to build structured intelligence
+          reports.
+        </p>
+      </header>
+
+      <section class="panel">
+        <form id="search-form">
+          <label class="field">
+            <span>Keyword</span>
+            <input id="keyword" name="keyword" type="text" placeholder="Enter a keyword" required />
+          </label>
+
+          <fieldset class="sources">
+            <legend>Sources</legend>
+            <label><input type="checkbox" name="sources" value="darkweb" checked /> Dark web</label>
+            <label><input type="checkbox" name="sources" value="telegram" checked /> Telegram</label>
+            <label><input type="checkbox" name="sources" value="discord" checked /> Discord</label>
+          </fieldset>
+
+          <label class="field">
+            <span>Max results</span>
+            <input id="max-results" name="maxResults" type="number" min="1" max="200" value="20" />
+          </label>
+
+          <button type="submit">Run collection</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Results</h2>
+        <div id="results" class="results">
+          <p class="muted">Run a search to populate intelligence snippets.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
