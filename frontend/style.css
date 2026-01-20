@@ -50,12 +50,18 @@ form {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="url"] {
   padding: 0.65rem 0.75rem;
   border-radius: 8px;
   border: 1px solid rgba(120, 145, 255, 0.35);
   background: #121a2f;
   color: inherit;
+}
+
+.helper {
+  font-size: 0.85rem;
+  color: #9aa3c7;
 }
 
 .sources {

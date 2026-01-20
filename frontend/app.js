@@ -8,6 +8,11 @@ function renderResults(payload) {
     return;
   }
 
+  const summary = document.createElement("p");
+  summary.className = "muted";
+  summary.textContent = `Showing ${payload.snippets.length} of ${payload.total_urls} URLs.`;
+  results.appendChild(summary);
+
   payload.snippets.forEach((snippet) => {
     const card = document.createElement("article");
     card.className = "result-card";
@@ -24,15 +29,21 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const keyword = document.getElementById("keyword").value.trim();
+  const apiBase = document.getElementById("api-base").value.trim().replace(/\/$/, "");
   const maxResults = Number(document.getElementById("max-results").value);
   const sources = Array.from(document.querySelectorAll("input[name='sources']:checked")).map(
     (input) => input.value
   );
 
+  if (!sources.length) {
+    results.innerHTML = "<p class=\"muted\">Select at least one source.</p>";
+    return;
+  }
+
   results.innerHTML = "<p class=\"muted\">Collecting intelligence...</p>";
 
   try {
-    const response = await fetch("http://localhost:8000/search", {
+    const response = await fetch(`${apiBase}/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

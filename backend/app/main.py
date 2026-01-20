@@ -17,6 +17,19 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def root() -> dict:
+    return {
+        "service": "cti-platform",
+        "status": "ok",
+        "routes": {
+            "health": "/health",
+            "search": "/search",
+            "docs": "/docs",
+        },
+    }
+
+
 @app.get("/health")
 def health_check() -> dict:
     return {"status": "ok"}

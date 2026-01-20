@@ -23,6 +23,19 @@
             <input id="keyword" name="keyword" type="text" placeholder="Enter a keyword" required />
           </label>
 
+          <label class="field">
+            <span>API base URL</span>
+            <input
+              id="api-base"
+              name="apiBase"
+              type="url"
+              placeholder="http://localhost:8000"
+              value="http://localhost:8000"
+              required
+            />
+            <span class="helper">Point this at your running backend API.</span>
+          </label>
+
           <fieldset class="sources">
             <legend>Sources</legend>
             <label><input type="checkbox" name="sources" value="darkweb" checked /> Dark web</label>

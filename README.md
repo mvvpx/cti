@@ -26,13 +26,17 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+If port 8000 is already in use, run `uvicorn app.main:app --reload --port 8001` and update the
+frontend API base URL accordingly.
+
 ### Frontend
 ```bash
 cd frontend
 python -m http.server 5173
 ```
 
-Then open `http://localhost:5173` in your browser.
+Then open `http://localhost:5173` in your browser and confirm the API base URL is pointing at the
+backend you started.
 
 ## Next steps
 - Replace pipeline placeholders with Selenium collectors and content extraction.
