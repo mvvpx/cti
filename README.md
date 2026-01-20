@@ -30,6 +30,15 @@ If port 8000 is already in use, run `python -m uvicorn app.main:app --reload --p
 update the frontend API base URL accordingly. Using `python -m uvicorn` ensures the virtual
 environment dependencies are used, which avoids importing system-installed FastAPI/Pydantic.
 
+### Full system (API + UI)
+With the backend running, open the bundled UI at:
+
+```
+http://localhost:8000/ui
+```
+
+The UI will default the API base URL to the same origin, so no extra configuration is needed.
+
 ### Frontend
 ```bash
 cd frontend

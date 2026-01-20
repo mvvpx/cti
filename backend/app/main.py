@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .pipeline import run_pipeline
 from .schemas import SearchRequest, SearchResponse
@@ -15,6 +18,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+frontend_dir = Path(__file__).resolve().parents[3] / "frontend"
+if frontend_dir.exists():
+    app.mount("/ui", StaticFiles(directory=frontend_dir, html=True), name="ui")
 
 
 @app.get("/")

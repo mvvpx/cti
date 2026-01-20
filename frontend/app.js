@@ -1,5 +1,11 @@
 const form = document.getElementById("search-form");
 const results = document.getElementById("results");
+const apiBaseInput = document.getElementById("api-base");
+
+const storedApiBase = window.localStorage.getItem("ctiApiBase");
+if (apiBaseInput) {
+  apiBaseInput.value = storedApiBase || window.location.origin;
+}
 
 function renderResults(payload) {
   results.innerHTML = "";
@@ -29,7 +35,7 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const keyword = document.getElementById("keyword").value.trim();
-  const apiBase = document.getElementById("api-base").value.trim().replace(/\/$/, "");
+  const apiBase = apiBaseInput.value.trim().replace(/\/$/, "");
   const maxResults = Number(document.getElementById("max-results").value);
   const sources = Array.from(document.querySelectorAll("input[name='sources']:checked")).map(
     (input) => input.value
@@ -40,6 +46,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
+  window.localStorage.setItem("ctiApiBase", apiBase);
   results.innerHTML = "<p class=\"muted\">Collecting intelligence...</p>";
 
   try {
